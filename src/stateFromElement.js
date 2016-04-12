@@ -182,6 +182,28 @@ class BlockGenerator {
       case 'pre': {
         return BLOCK_TYPE.CODE;
       }
+      case 'div': {
+        if (attr) {
+          switch (attr.nodeValue) {
+            case 'text-left': {
+              return 'LEFT';
+            }
+            case 'text-center': {
+              return 'CENTER';
+            }
+            case 'text-right':{
+              return 'RIGHT';
+            }
+            case 'text-justify':{
+              return 'JUSTIFY';
+            }
+            default:{
+              return _draftJsTools.BLOCK_TYPE.UNSTYLED;
+            }
+          }  
+        }
+        return _draftJsTools.BLOCK_TYPE.UNSTYLED;
+      }
       default: {
         return BLOCK_TYPE.UNSTYLED;
       }
