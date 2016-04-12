@@ -150,7 +150,7 @@ class BlockGenerator {
     }
   }
 
-  getBlockTypeFromTagName(tagName: string): string {
+  getBlockTypeFromTagName(tagName: string, attr: object): string {
     switch (tagName) {
       case 'li': {
         let parent = this.blockStack.slice(-1)[0];
@@ -182,27 +182,28 @@ class BlockGenerator {
       case 'pre': {
         return BLOCK_TYPE.CODE;
       }
-      case 'div': {
+      case 'p': {
         if (attr) {
-          switch (attr.nodeValue) {
-            case 'text-left': {
+          const value = attr.nodeValue.replace(/;/, '');
+          switch (value) {
+            case 'text-align: left': {
               return 'LEFT';
             }
-            case 'text-center': {
+            case 'text-align: center': {
               return 'CENTER';
             }
-            case 'text-right':{
+            case 'text-align: right':{
               return 'RIGHT';
             }
-            case 'text-justify':{
+            case 'text-align: justify':{
               return 'JUSTIFY';
             }
             default:{
-              return _draftJsTools.BLOCK_TYPE.UNSTYLED;
+              return BLOCK_TYPE.UNSTYLED;
             }
           }  
         }
-        return _draftJsTools.BLOCK_TYPE.UNSTYLED;
+        return BLOCK_TYPE.UNSTYLED;
       }
       default: {
         return BLOCK_TYPE.UNSTYLED;
@@ -212,7 +213,7 @@ class BlockGenerator {
 
   processBlockElement(element: DOMElement) {
     let tagName = element.nodeName.toLowerCase();
-    let type = this.getBlockTypeFromTagName(tagName);
+    let type = this.getBlockTypeFromTagName(tagName, element.attributes[0]);
     let hasDepth = canHaveDepth(type);
     let allowRender = !SPECIAL_ELEMENTS.hasOwnProperty(tagName);
     let block: ParsedBlock = {
