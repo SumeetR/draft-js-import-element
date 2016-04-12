@@ -6,7 +6,6 @@
   "scripts": {
     "build": "babel src --ignore '_*' --out-dir lib",
     "lint": "eslint --max-warnings 0 .",
-    "prepublish": "npm run build",
     "test": "npm run lint && npm run test-src",
     "test-src": "mocha"
   },
@@ -15,6 +14,7 @@
     "synthetic-dom": "^0.1.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.7.5",
     "babel-core": "^6.7.2",
     "babel-eslint": "^5.0.0",
     "babel-plugin-transform-class-properties": "^6.6.0",
@@ -35,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/sstur/draft-js-import-element.git"
+    "url": "git+ssh://git@github.com/SumeetR/draft-js-import-element.git"
   },
   "keywords": [
     "draft-js",
@@ -44,7 +44,7 @@
   "author": "sstur@me.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sstur/draft-js-import-element/issues"
+    "url": "https://github.com/SumeetR/draft-js-import-element/issues"
   },
-  "homepage": "https://github.com/sstur/draft-js-import-element#readme"
+  "homepage": "https://github.com/SumeetR/draft-js-import-element#readme"
 }
