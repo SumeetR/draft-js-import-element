@@ -150,7 +150,7 @@ class BlockGenerator {
     }
   }
 
-  getBlockTypeFromTagName(tagName: string, attr: object): string {
+  getBlockTypeFromTagName(tagName: string, attr: Object): string {
     switch (tagName) {
       case 'li': {
         let parent = this.blockStack.slice(-1)[0];
@@ -192,16 +192,16 @@ class BlockGenerator {
             case 'text-align: center': {
               return 'CENTER';
             }
-            case 'text-align: right':{
+            case 'text-align: right': {
               return 'RIGHT';
             }
-            case 'text-align: justify':{
+            case 'text-align: justify': {
               return 'JUSTIFY';
             }
-            default:{
+            default: {
               return BLOCK_TYPE.UNSTYLED;
             }
-          }  
+          }
         }
         return BLOCK_TYPE.UNSTYLED;
       }
@@ -385,6 +385,14 @@ function addStyleFromTagName(styleSet: StyleSet, tagName: string): StyleSet {
     }
     case 'del': {
       styleSet = styleSet.add(INLINE_STYLE.STRIKETHROUGH);
+      break;
+    }
+    case 'sub': {
+      styleSet = styleSet.add('SUB');
+      break;
+    }
+    case 'sup': {
+      styleSet = styleSet.add('SUPER');
       break;
     }
   }
